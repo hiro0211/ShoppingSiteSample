@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員情報管理システム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-bottom: none;
+        }
+        .content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .content.active {
+            display: block;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>会員情報管理システム</h1>
+    
+    <div class="tab-container">
+        <div class="tab active" onclick="openTab(event, 'search')">会員検索</div>
+        <div class="tab" onclick="openTab(event, 'register')">新規登録</div>
+        <div class="tab" onclick="openTab(event, 'update')">情報更新</div>
+        <div class="tab" onclick="openTab(event, 'purchase')">商品購入</div>
+    </div>
+
+    <div id="search" class="content active">
+        <h2>会員検索</h2>
+        <input type="text" id="searchInput" placeholder="会員IDまたは名前を入力">
+        <button onclick="searchMember()">検索</button>
+    </div>
+
+    <div id="register" class="content">
+        <h2>新規会員登録</h2>
+        <input type="text" id="registerName" placeholder="名前">
+        <input type="email" id="registerEmail" placeholder="メールアドレス">
+        <input type="tel" id="registerPhone" placeholder="電話番号">
+        <button onclick="registerMember()">登録</button>
+    </div>
+
+    <div id="update" class="content">
+        <h2>会員情報更新</h2>
+        <input type="text" id="updateId" placeholder="会員ID">
+        <input type="text" id="updateInfo" placeholder="更新する情報">
+        <button onclick="updateMember()">更新</button>
+    </div>
+
+    <div id="purchase" class="content">
+        <h2>商品購入</h2>
+        <input type="text" id="purchaseMemberId" placeholder="会員ID">
+        <input type="text" id="purchaseProductId" placeholder="商品ID">
+        <input type="number" id="purchaseQuantity" placeholder="数量">
+        <button onclick="purchaseProduct()">購入</button>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, content, tabs;
+            content = document.getElementsByClassName("content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+            tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function searchMember() {
+            var searchTerm = document.getElementById("searchInput").value;
+            alert("会員検索: " + searchTerm);
+            // ここに実際の検索ロジックを実装
+        }
+
+        function registerMember() {
+            var name = document.getElementById("registerName").value;
+            var email = document.getElementById("registerEmail").value;
+            var phone = document.getElementById("registerPhone").value;
+            alert("新規会員登録: " + name + ", " + email + ", " + phone);
+            // ここに実際の登録ロジックを実装
+        }
+
+        function updateMember() {
+            var id = document.getElementById("updateId").value;
+            var info = document.getElementById("updateInfo").value;
+            alert("会員情報更新: ID " + id + ", 情報: " + info);
+            // ここに実際の更新ロジックを実装
+        }
+
+        function purchaseProduct() {
+            var memberId = document.getElementById("purchaseMemberId").value;
+            var productId = document.getElementById("purchaseProductId").value;
+            var quantity = document.getElementById("purchaseQuantity").value;
+            alert("商品購入: 会員ID " + memberId + ", 商品ID " + productId + ", 数量 " + quantity);
+            // ここに実際の購入ロジックを実装
+        }
+    </script>
+</body>
+</html>
